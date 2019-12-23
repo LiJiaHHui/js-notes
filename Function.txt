@@ -1,0 +1,49 @@
+1.caller与callee
+	arguments.callee (被访者)表示引用当前正在执行的函数，可用消除递归函数的强耦合
+      Function.caller(来访者)调用者，如果是在全局作用域中调用当前函数，值为null。
+	严格模式下，不允许访问arguments.callee和arguments.caller属性，主要体现在arguments.[[Get]]内部方法
+	arguments，arguments.callee，arguments.caller，arguments.callee.caller也不允许再被赋值
+	
+2.slice
+	两种用法：String.slice,返回字符串
+			    Array.slice,返回数组
+	arguments并不是真正的数组对象，只是与数组类似，Array.prototype.slice.call(arguments)可以理解成是将arguments转换成一个数组对象，让arguments具有slice()方法。
+	 比如：
+	 var arr = [1,2,3,4];
+ console.log(Array.prototype.slice.call(arr,2));//[3,4]
+3.String
+	可以用String()来确定某一变量是否是null或者undefined
+	var a , b = null;
+String(a);//undefined
+String(b);//null
+	直接调用String()作为方法时，将会执行类型转换，返回经过toString(value)得到的字符串字面量（与new String()不同），或者空字符串（''）.
+	
+	来自 <https://segmentfault.com/a/1190000002911253> 
+4.函数声明与函数表达式
+	解析器先读取函数声明然后在执行任何代码前可用（函数声明提升），函数表达式要等解析器执行到所在行才能执行。
+	函数声明function name(){}
+	函数表达式var name=function(){};
+5.this
+	this引用函数据以执行的环境对象，全局作用域与局部作用域不同，结果不同。
+	函数名字只是一个包含指针的变量。
+	
+	
+6.length与prototype
+	每个函数都包含这两个属性，length表示函数希望接收的命名参数的个数，prototype保存了引用类型的所有实例.
+7.call与apply
+	call与apply是非继承的方法，可以在特定的作用域中调用函数（设置函数体中的this对象的值），可以扩充函数运行的作用域->对象不需要与方法有任何耦合关系
+8.bind
+	创建函数的实例将this值绑定传给bind函数的值
+	
+9.toLocaleString,toString,valueOf
+	返回函数的代码
+10.引用类型
+	Boolean,Number,String
+	
+	基本类型值不是对象，从逻辑上不应该拥有方法，后台自动完成以下处理
+	
+	实现基本字符串值与对象一样，同样使用Boolean,Number类型对应的布尔值与数字值。
+	
+11.引用类型与基本包装类型
+	主要区别在于对象的生存期，使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前一直保存在内存。自动创建的基本包装类型的对象，只存在于一行代码的执行瞬间，然后立即被销毁，意味着不能在运行时添加属性和方法。
+	new：调用基本包装类型的构造函数与直接调用同名的转型函数
