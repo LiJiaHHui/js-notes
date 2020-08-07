@@ -1,0 +1,4 @@
+1  BCD
+2  C
+3
+是，内部调用observer中的object.defineProperty来新增相应的属性并赋值
