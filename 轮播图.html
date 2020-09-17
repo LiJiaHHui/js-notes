@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="max">
+        <div class="re">
+            <ul>
+                <li><img src="./pic/1.jpg" alt=""></li>
+                <li><img src="./pic/2.jpg" alt=""></li>
+                <li><img src="./pic/3.jpg" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</body>
+<!-- css3属性transition设置过渡时间 -->
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #max{
+        width: 100%;
+        max-width: 600px;
+        height: 40vh;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    .re{
+        width: 500%;
+        height: 40vh;
+        position: relative;
+        transition: 500ms;
+        left: 0;
+    }
+    ul{
+        width: 100%;
+        height: 40vh;
+        
+        list-style: none;
+    }
+    li{
+        width: 20%;
+        height: 40vh;
+        float: left;   
+    }
+    img{
+        width: 100%;
+        height: 40vh;
+    }
+</style>
+<script>
+    window.onload=function(){
+    var re=document.getElementsByClassName("re")[0];
+    // 实际宽度
+    var moveW=document.getElementsByTagName("img")[0].offsetWidth;
+    // left用于计数
+    var left=0;
+    setInterval(function(){
+        re.style.transition="500ms";
+        // 左边减去实际宽度=左移
+        left-=moveW;
+        // 重新循环
+        if(left<=-moveW*3){
+            re.style.transition="0ms"
+            left=0;
+        }
+        re.style.left=left + "px"
+    },1000)
+}
+</script>
+</html>
